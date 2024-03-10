@@ -1,0 +1,118 @@
+{
+    "resourceType": "StructureDefinition",
+    "id": "kpi-dotbase",
+    "url": "http://example.com/fhir/StructureDefinition/kpi-dotbase",
+    "version": "0.0.1",
+    "name": "KPI",
+    "title": "KPI Definition",
+    "status": "draft",
+    "experimental": true,
+    "date": "2024-03-09",
+    "publisher": "dotbase",
+    "description": "This profile defines KPIs as a profile of the FHIR Observation",
+    "fhirVersion": "4.0.1",
+    "kind": "resource",
+    "abstract": false,
+    "derivation": "specialization",
+    "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Observation",
+    "differential": {
+        "element": [
+            {
+                "id": "KPI:valueQuantity",
+                "path": "Observation.value[x]",
+                "type": [
+                    {
+                        "code": "Quantity"
+                    },
+                    {
+                        "code": "Ratio"
+                    }
+                ],
+                "min": 0,
+                "max": "1",
+                "constraint": [
+                    {
+                        "key": "value-or-dataAbsentReason",
+                        "severity": "error",
+                        "human": "Either valueQuantity or dataAbsentReason should be present",
+                        "expression": "exists(%resource.valueQuantity) or exists(%resource.dataAbsentReason)"
+                    }
+                ]
+            },
+            {
+                "id": "Observation.dataAbsentReason",
+                "path": "Observation.dataAbsentReason",
+                "type": [
+                    {
+                        "code": "CodableConcept"
+                    }
+                ],
+                "min": 0,
+                "max": "1"
+            },
+            {
+                "id": "KPI:subject",
+                "path": "Observation.subject",
+                "type": [
+                    {
+                        "code": "Reference",
+                        "targetProfile": [ "http://hl7.org/fhir/StructureDefinition/Organization" ]
+                    }
+                ],
+                "min": 1,
+                "max": "1"
+            },
+            {
+                "id": "KPI:effective",
+                "path": "Observation.effectivePeriod",
+                "type": [
+                    { 
+                        "code": "Period"
+                    }
+                ],
+                "min": 1,
+                "max": "1"
+            },
+            {
+                "id": "KPI:performer",
+                "path": "Observation.performer",
+                "type": [
+                    {
+                        "code": "Reference",
+                        "targetProfile": [ "http://hl7.org/fhir/StructureDefinition/Organization" ]
+                    }
+                ],
+                "min": 0,
+                "max": "1"
+            },
+            {
+                "id": "KPI:referenceRange",
+                "path": "Observation.referenceRange",
+                "min": 0,
+                "max": "*"
+            },
+            {
+                "id": "KPI:referenceRange.normalValue",
+                "path": "Observation.referenceRange.low",
+                "type": [
+                    {
+                        "code": "SimpleQuantity"
+                    }
+                ],
+                "min": 0,
+                "max": "1"
+            },
+            {
+                "id": "KPI:referenceRange.targetValue",
+                "path": "Observation.referenceRange.high",
+                "type": [
+                    {
+                        "code": "SimpleQuantity"
+                    }
+                ],
+                "min": 0,
+                "max": "1"
+            }
+        ]
+    }
+}
