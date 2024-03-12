@@ -1,0 +1,24 @@
+{
+  "name": "digital-health-casestudy-dotbase",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "tsc && node build/index.js",
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hannesharnisch/digital-health-casestudy-dotbase.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hannesharnisch/digital-health-casestudy-dotbase/issues"
+  },
+  "homepage": "https://github.com/hannesharnisch/digital-health-casestudy-dotbase#readme",
+  "devDependencies": {
+    "typescript": "^5.4.2"
+  }
+}
