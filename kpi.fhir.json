@@ -1,6 +1,6 @@
 {
     "resourceType": "StructureDefinition",
-    "id": "kpi-dotbase",
+    "id": "KPI-dotbase",
     "url": "http://example.com/fhir/StructureDefinition/kpi-dotbase",
     "version": "0.0.1",
     "name": "KPI",
@@ -9,30 +9,23 @@
     "experimental": true,
     "date": "2024-03-09",
     "publisher": "dotbase",
-    "description": "This profile defines KPIs as a profile of the FHIR Observation",
+    "description": "This profile defines KPI as a profile of the FHIR Observation",
     "fhirVersion": "4.0.1",
     "kind": "resource",
+    "type": "Observation",
     "abstract": false,
-    "derivation": "specialization",
+    "derivation": "constraint",
     "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Observation",
     "differential": {
         "element": [
             {
-                "id": "Observation.instantiates[x]",
-                "path": "Observation.instantiates[x]",
-                "min": 0,
-                "max": "0"
-            },
-            {
                 "id": "Observation.basedOn",
                 "path": "Observation.basedOn",
-                "min": 0,
                 "max": "0"
             },
             {
                 "id": "Observation.partOf",
                 "path": "Observation.partOf",
-                "min": 0,
                 "max": "0"
             },
             {
@@ -40,29 +33,19 @@
                 "path": "Observation.category",
                 "min": 1,
                 "max": "*",
-                "type": [
-                    {
-                        "code": "CodableConcept"
-                    }
-                ],
                 "constraint": [
                     {
-                        "key": "kpi-category",
+                        "key": "Observation-category",
                         "severity": "error",
-                        "human": "At least one category code must be 'KPI'",
-                        "expression": "category.where(coding.code='KPI').exists()"
+                        "human": "At least one category code must be 'Observation'",
+                        "expression": "category.where(coding.code='Observation').exists()"
                     }
                 ]
             },
             {
                 "id": "Observation.subject",
                 "path": "Observation.subject",
-                "type": [
-                    {
-                        "code": "Reference",
-                        "targetProfile": [ "http://hl7.org/fhir/StructureDefinition/Organization" ]
-                    }
-                ],
+
                 "min": 1,
                 "max": "1"
             },
@@ -123,22 +106,12 @@
             {
                 "id": "Observation.dataAbsentReason",
                 "path": "Observation.dataAbsentReason",
-                "type": [
-                    {
-                        "code": "CodableConcept"
-                    }
-                ],
                 "min": 0,
                 "max": "1"
             },
             {
                 "id": "Observation.bodySite",
                 "path": "Observation.bodySite",
-                "max": "0"
-            },
-            {
-                "id": "Observation.bodyStructure",
-                "path": "Observation.bodyStructure",
                 "max": "0"
             },
             {
@@ -152,7 +125,7 @@
                 "max": "0"
             },
             {
-                "id": "Obsrvation.referenceRange",
+                "id": "Observation.referenceRange",
                 "path": "Observation.referenceRange",
                 "min": 0,
                 "max": "*"
@@ -160,55 +133,12 @@
             {
                 "id": "Observation.referenceRange.low",
                 "path": "Observation.referenceRange.low",
-                "type": [
-                    {
-                        "code": "SimpleQuantity"
-                    }
-                ],
-                "min": 0,
-                "max": "1"
-            },
-            {
-                "id": "Observation.referenceRange.high",
-                "path": "Observation.referenceRange.high",
-                "type": [
-                    {
-                        "code": "SimpleQuantity"
-                    }
-                ],
-                "min": 0,
-                "max": "1"
-            },
-            {
-                "id": "Observation.referenceRange.normalValue",
-                "path": "Observation.referenceRange.normalValue",
-                "type": [
-                    {
-                        "code": "SimpleQuantity"
-                    }
-                ],
-                "min": 0,
-                "max": "1"
-            },
-            {
-                "id": "Observation.referenceRange.targetValue",
-                "path": "Observation.referenceRange.targetValue",
-                "type": [
-                    {
-                        "code": "SimpleQuantity"
-                    }
-                ],
                 "min": 0,
                 "max": "1"
             },
             {
                 "id": "Observation.referenceRange.text",
                 "path": "Observation.referenceRange.text",
-                "type": [
-                    {
-                        "code": "CodableConcept"
-                    }
-                ],
                 "min": 1,
                 "max": "1"
             },
