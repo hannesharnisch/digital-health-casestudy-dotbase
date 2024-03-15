@@ -18,18 +18,99 @@
     "differential": {
         "element": [
             {
-                "id": "KPI:valueQuantity",
-                "path": "Observation.value[x]",
+                "id": "Observation.instantiates[x]",
+                "path": "Observation.instantiates[x]",
+                "min": 0,
+                "max": "0"
+            },
+            {
+                "id": "Observation.basedOn",
+                "path": "Observation.basedOn",
+                "min": 0,
+                "max": "0"
+            },
+            {
+                "id": "Observation.partOf",
+                "path": "Observation.partOf",
+                "min": 0,
+                "max": "0"
+            },
+            {
+                "id": "Observation.category",
+                "path": "Observation.category",
+                "min": 1,
+                "max": "*",
                 "type": [
                     {
-                        "code": "Quantity"
-                    },
+                        "code": "CodableConcept"
+                    }
+                ],
+                "constraint": [
                     {
-                        "code": "Ratio"
+                        "key": "kpi-category",
+                        "severity": "error",
+                        "human": "At least one category code must be 'KPI'",
+                        "expression": "category.where(coding.code='KPI').exists()"
+                    }
+                ]
+            },
+            {
+                "id": "Observation.subject",
+                "path": "Observation.subject",
+                "type": [
+                    {
+                        "code": "Reference",
+                        "targetProfile": [ "http://hl7.org/fhir/StructureDefinition/Organization" ]
+                    }
+                ],
+                "min": 1,
+                "max": "1"
+            },
+            {
+                "id": "Observation.encounter",
+                "path": "Observation.encounter",
+                "min": 0,
+                "max": "0"
+            },
+            {
+                "id": "Observation.effective[x]",
+                "path": "Observation.effective[x]",
+                "min": 1,
+                "max": "1",
+                "type": [
+                    {
+                        "code": "Period"
+                    }
+                ]
+            },
+            {
+                "id": "Observation.effective[x].start",
+                "path": "Observation.effective[x].start",
+                "min": 1,
+                "max": "1"
+            },
+            {
+                "id": "Observation.performer",
+                "path": "Observation.performer",
+                "type": [
+                    {
+                        "code": "Reference",
+                        "targetProfile": [ "http://hl7.org/fhir/StructureDefinition/Organization" ]
                     }
                 ],
                 "min": 0,
+                "max": "1"
+            },
+            {
+                "id": "Observation.value[x]",
+                "path": "Observation.value[x]",
+                "min": 0,
                 "max": "1",
+                "type": [
+                    {
+                        "code": "Quantity"
+                    }
+                ],
                 "constraint": [
                     {
                         "key": "value-or-dataAbsentReason",
@@ -51,48 +132,33 @@
                 "max": "1"
             },
             {
-                "id": "KPI:subject",
-                "path": "Observation.subject",
-                "type": [
-                    {
-                        "code": "Reference",
-                        "targetProfile": [ "http://hl7.org/fhir/StructureDefinition/Organization" ]
-                    }
-                ],
-                "min": 1,
-                "max": "1"
+                "id": "Observation.bodySite",
+                "path": "Observation.bodySite",
+                "max": "0"
             },
             {
-                "id": "KPI:effective",
-                "path": "Observation.effectivePeriod",
-                "type": [
-                    { 
-                        "code": "Period"
-                    }
-                ],
-                "min": 1,
-                "max": "1"
+                "id": "Observation.bodyStructure",
+                "path": "Observation.bodyStructure",
+                "max": "0"
             },
             {
-                "id": "KPI:performer",
-                "path": "Observation.performer",
-                "type": [
-                    {
-                        "code": "Reference",
-                        "targetProfile": [ "http://hl7.org/fhir/StructureDefinition/Organization" ]
-                    }
-                ],
-                "min": 0,
-                "max": "1"
+                "id": "Observation.specimen",
+                "path": "Observation.specimen",
+                "max": "0"
             },
             {
-                "id": "KPI:referenceRange",
+                "id": "Observation.device",
+                "path": "Observation.device",
+                "max": "0"
+            },
+            {
+                "id": "Obsrvation.referenceRange",
                 "path": "Observation.referenceRange",
                 "min": 0,
                 "max": "*"
             },
             {
-                "id": "KPI:referenceRange.normalValue",
+                "id": "Observation.referenceRange.low",
                 "path": "Observation.referenceRange.low",
                 "type": [
                     {
@@ -103,7 +169,7 @@
                 "max": "1"
             },
             {
-                "id": "KPI:referenceRange.targetValue",
+                "id": "Observation.referenceRange.high",
                 "path": "Observation.referenceRange.high",
                 "type": [
                     {
@@ -112,6 +178,44 @@
                 ],
                 "min": 0,
                 "max": "1"
+            },
+            {
+                "id": "Observation.referenceRange.normalValue",
+                "path": "Observation.referenceRange.normalValue",
+                "type": [
+                    {
+                        "code": "SimpleQuantity"
+                    }
+                ],
+                "min": 0,
+                "max": "1"
+            },
+            {
+                "id": "Observation.referenceRange.targetValue",
+                "path": "Observation.referenceRange.targetValue",
+                "type": [
+                    {
+                        "code": "SimpleQuantity"
+                    }
+                ],
+                "min": 0,
+                "max": "1"
+            },
+            {
+                "id": "Observation.referenceRange.text",
+                "path": "Observation.referenceRange.text",
+                "type": [
+                    {
+                        "code": "CodableConcept"
+                    }
+                ],
+                "min": 1,
+                "max": "1"
+            },
+            {
+                "id": "Observation.component",
+                "path": "Observation.component",
+                "max": "0"
             }
         ]
     }
