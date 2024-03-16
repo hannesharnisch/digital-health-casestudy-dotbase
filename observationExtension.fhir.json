@@ -1,0 +1,32 @@
+{
+  "resourceType": "StructureDefinition",
+  "url": "http://example.com/StructureDefinition/observation-targetValue",
+  "name": "ObservationTargetValue",
+  "status": "active",
+  "publisher": "YourOrganization",
+  "description": "An extension to capture target value information for observations.",
+  "context": [
+    {
+      "type": "element",
+      "expression": "Observation"
+    }
+  ],
+  "type": "Extension",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/extension",
+  "snapshot": {
+    "element": [
+      {
+        "path": "Extension",
+        "short": "Target value extension",
+        "definition": "Extension to capture target value information for observations.",
+        "min": 0,
+        "max": "1",
+        "type": [
+          {
+            "code": "Quantity"
+          }
+        ]
+      }
+    ]
+  }
+}
