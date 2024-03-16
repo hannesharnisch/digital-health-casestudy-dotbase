@@ -45,7 +45,6 @@
             {
                 "id": "Observation.subject",
                 "path": "Observation.subject",
-
                 "min": 1,
                 "max": "1"
             },

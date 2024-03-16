@@ -1,0 +1,55 @@
+{
+  "resourceType": "Observation",
+  "id": "example-patient-satisfaction-kpi",
+  "status": "final",
+  "code": {
+    "coding": [{
+      "display": "Patient saftisfaction KPI"
+    }]
+  },
+  "meta": {
+    "profile": ["http://example.com/fhir/StructureDefinition/kpi-dotbase"]
+  },
+  "category": [
+    {
+      "coding": [
+        {
+          "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+          "code": "survey",
+          "display": "Survey"
+        }
+      ]
+    }
+  ],
+  "subject": {
+    "reference": "Organization/123456",
+    "display": "Krankenhaus Beispiel"
+  },
+  "effectiveDateTime": "2024-03-15T12:00:00Z",
+  "performer": [{
+      "reference": "Organization/123456",
+      "display": "Krankenhaus Beispiel"
+    }],
+  "valueQuantity": {
+    "value": 80,
+    "unit": "Points"
+  },
+  "referenceRange": [
+    {
+      "low": {
+        "value": 50,
+        "unit": "Points"
+      },
+      "text": "Normal Range: 60-90 Points"
+    }
+  ],
+  "extension": [
+    {
+      "url": "http://example.com/StructureDefinition/observation-targetValue",
+      "valueQuantity": {
+        "value": 95,
+        "unit": "Points"
+      }
+    }
+  ]
+}
