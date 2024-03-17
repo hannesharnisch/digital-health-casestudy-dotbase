@@ -1,0 +1,104 @@
+{
+  "resourceType": "Bundle",
+  "id": "a6082538-1663-416b-99da-e42144830e84",
+  "meta": {
+    "lastUpdated": "2024-03-17T09:15:22.608+00:00"
+  },
+  "type": "searchset",
+  "link": [
+    {
+      "relation": "self",
+      "url": "https://hapi.fhir.org/baseR4/Observation?date=2024-01-02"
+    },
+    {
+      "relation": "next",
+      "url": "https://hapi.fhir.org/baseR4?_getpages=a6082538-1663-416b-99da-e42144830e84&_getpagesoffset=20&_count=20&_pretty=true&_bundletype=searchset"
+    }
+  ],
+  "entry": [
+    {
+      "fullUrl": "http://example.com/fhir/Observation/11111",
+      "resource": {
+        "resourceType": "Observation",
+        "id" : "11111",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "code": "84423-4",
+              "display": "Patient Satisfaction Survey"
+            }
+          ]
+        },
+        "subject": {"reference": "Patient/123"},
+        "encounter": {"reference": "Encounter/456"},
+        "effectiveDateTime": "2024-03-17T08:00:00Z",
+        "component": [
+          {
+            "code": {"coding": [{ "code": "q1", "display": "How satisfied are you with your overall experience?"}]},
+            "valueInteger": 4
+          }
+        ]
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "http://example.com/fhir/Observation/22222",
+      "resource": {
+        "resourceType": "Observation",
+        "id" : "22222",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "code": "84423-4",
+              "display": "Patient Satisfaction Survey"
+            }
+          ]
+        },
+        "subject": {"reference": "Patient/1234"},
+        "encounter": {"reference": "Encounter/4565"},
+        "effectiveDateTime": "2024-01-17T08:00:00Z",
+        "component": [
+          {
+            "code": {"coding": [{ "code": "q1", "display": "How satisfied are you with your overall experience?"}]},
+            "valueInteger": 3
+          }
+        ]
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "http://example.com/fhir/Observation/33333",
+      "resource": {
+        "resourceType": "Observation",
+        "id" : "33333",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "code": "84423-4",
+              "display": "Patient Satisfaction Survey"
+            }
+          ]
+        },
+        "subject": {"reference": "Patient/12345"},
+        "encounter": {"reference": "Encounter/45655"},
+        "effectiveDateTime": "2024-01-17T08:00:00Z",
+        "component": [
+          {
+            "code": {"coding": [{ "code": "q1", "display": "How satisfied are you with your overall experience?"}]},
+            "valueInteger": 5
+          }
+        ]
+      },
+      "search": {
+        "mode": "match"
+      }
+    }
+  ]
+}

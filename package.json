@@ -20,5 +20,9 @@
   "homepage": "https://github.com/hannesharnisch/digital-health-casestudy-dotbase#readme",
   "devDependencies": {
     "typescript": "^5.4.2"
+  },
+  "dependencies": {
+    "@types/fhir": "^0.0.41",
+    "fs": "*"
   }
 }

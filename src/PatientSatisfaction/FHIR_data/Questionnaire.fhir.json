@@ -1,0 +1,21 @@
+{
+  "resourceType": "Questionnaire",
+  "id": "patient-satisfaction-survey",
+  "status": "active",
+  "title": "Patient Satisfaction Survey",
+  "version": "1.0",
+  "item": [
+    {
+      "linkId": "q1",
+      "text": "How satisfied are you with your overall experience? 5 is best",
+      "type": "choice",
+      "answerOption": [
+        {"valueInteger": 5},
+        {"valueInteger": 4},
+        {"valueInteger": 3},
+        {"valueInteger": 2},
+        {"valueInteger": 1}
+      ]
+    }
+  ]
+}
