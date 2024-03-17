@@ -1,6 +1,11 @@
 import {CodeableConcept, Observation, ObservationReferenceRange, Period, Quantity, Reference} from "fhir/r4";
 
-class KPIPeriod implements Period {
+interface KPIOptions {
+    performer?: Reference[] | undefined;
+    dataAbsentReason?: CodeableConcept | undefined;
+    referenceRange?: KPIReferenceRange[] | undefined;
+}
+export class KPIPeriod implements Period {
     start: string;
     end: string | undefined;
 
@@ -23,13 +28,23 @@ class KPIReferenceRange implements ObservationReferenceRange {
     }
 }
 
-class KPI implements Observation {
+export class OrganizationReference implements Reference {
+    reference: string
+    display: string | undefined;
+    constructor(orgId: string, orgName?: string) {
+        this.reference = `Organization/${orgId}`
+        this.display = orgName
+    }
+
+}
+
+export class KPI implements Observation {
     readonly resourceType = 'Observation';
     readonly status = 'final';
+    readonly category: CodeableConcept[] =  [{"coding": [{"display": "KPI"}]}]
     basedOn?: undefined;
     code: CodeableConcept;
     partOf?: undefined;
-    category: CodeableConcept[];
     subject: Reference;
     encounter?: undefined;
     effectivePeriod: KPIPeriod;
@@ -55,7 +70,6 @@ class KPI implements Observation {
     constructor(inputObject: any) {
         this.code = inputObject.code
         this.subject = inputObject.subject
-        this.category = inputObject.category
         this.effectivePeriod = new KPIPeriod(inputObject.effectivePeriod.start, inputObject.effectivePeriod.end)
 
         for (const key of Object.keys(inputObject)) {
@@ -65,6 +79,17 @@ class KPI implements Observation {
             // @ts-ignore
             this[key] = inputObject[key]
         }
+    }
+
+    static createKPI(kpiName: string, value: Quantity, referedOrganization: OrganizationReference, period: KPIPeriod, options?: KPIOptions){
+        const kpiCode: CodeableConcept = {"coding": [{"display": kpiName}]}
+
+        return new KPI({
+            code: kpiCode,
+            subject: referedOrganization,
+            effectivePeriod: period,
+            ...options
+        })
     }
 
 }
