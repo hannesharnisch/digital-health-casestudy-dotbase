@@ -36,20 +36,33 @@
   },
   "referenceRange": [
     {
-      "low": {
+      "low" : {
+        "value": 60,
+        "unit": "Points"
+      },
+      "high" : {
+        "value": 90,
+        "unit": "Points"
+      },
+      "text": "Normal Range"
+    },
+    {
+      "low" : {
+        "value": 0,
+        "unit": "Points"
+      },
+      "high" : {
         "value": 50,
         "unit": "Points"
       },
-      "text": "Normal Range: 60-90 Points"
-    }
-  ],
-  "extension": [
+      "text": "Critical Range"
+    },
     {
-      "url": "http://example.com/StructureDefinition/observation-targetValue",
-      "valueQuantity": {
+      "low" : {
         "value": 95,
         "unit": "Points"
-      }
+      },
+      "text": "Target Value"
     }
   ]
 }
