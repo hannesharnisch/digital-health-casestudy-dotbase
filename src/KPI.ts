@@ -7,9 +7,9 @@ interface KPIOptions {
 }
 export class KPIPeriod implements Period {
     start: string;
-    end: string | undefined;
+    end?: string | undefined;
 
-    constructor(start: string, end: string | undefined) {
+    constructor(start: string, end?: string | undefined) {
         this.start = start
         this.end = end
     }
