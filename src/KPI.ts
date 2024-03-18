@@ -1,5 +1,10 @@
 import {CodeableConcept, Observation, ObservationReferenceRange, Period, Quantity, Reference} from "fhir/r4";
 
+interface KPIIdentifier {
+    id: string,
+    name: string
+}
+
 interface KPIOptions {
     performer?: Reference[] | undefined;
     dataAbsentReason?: CodeableConcept | undefined;
@@ -81,8 +86,8 @@ export class KPI implements Observation {
         }
     }
 
-    static createKPI(kpiName: string, value: Quantity, referedOrganization: OrganizationReference, period: KPIPeriod, options?: KPIOptions){
-        const kpiCode: CodeableConcept = {"coding": [{"display": kpiName}]}
+    static createKPI(kpiIdentifier: KPIIdentifier, value: Quantity, referedOrganization: OrganizationReference, period: KPIPeriod, options?: KPIOptions){
+        const kpiCode: CodeableConcept = {coding: [{code: kpiIdentifier.id, display: kpiIdentifier.name}]}
 
         return new KPI({
             code: kpiCode,

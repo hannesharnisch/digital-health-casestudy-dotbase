@@ -21,7 +21,10 @@ export function demonstrateAverageLengthOfStayKPI(jsonPath: string) : KPI {
     const avg = calculateAverage(cleanDaysOfStay)
 
     return KPI.createKPI(
-        "Average Length Of Stay",
+    {
+            id: "1",
+            name: "Average Length Of Stay"
+        },
         {
             value: avg,
             unit: "days"
