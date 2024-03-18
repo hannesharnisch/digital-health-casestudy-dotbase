@@ -16,8 +16,8 @@ The following is a list of fields that are used for representing a KPI.
 |    code     | [CodableConcept](https://www.hl7.org/fhir/datatypes.html#CodeableConcept) |[LOINC Code](hl7.org/fhir/valueset-observation-codes.html) Identifying the Ressource | 
 | valueQuantity | [Quantity](https://www.hl7.org/fhir/datatypes.html#Quantity) | Value of the KPI |
 | dataAbsentReason | [CodableConcept](https://www.hl7.org/fhir/datatypes.html#CodeableConcept) | Description if the value of the KPI is empty - could be because it couldn't be computed |
-| subject | [Reference](https://www.hl7.org/fhir/references.html#Reference)([Organization](https://www.hl7.org/fhir/organization.html)) | The Organization that KPI is observed on |
+| focus | [Reference](https://www.hl7.org/fhir/references.html#Reference)([Organization](https://www.hl7.org/fhir/organization.html)) | The Organization that KPI is observed on |
 | performer | [Reference](https://www.hl7.org/fhir/references.html#Reference)([Organization](https://www.hl7.org/fhir/organization.html)) | The Organization that calculated the KPI |
 | effectivePeriod | [Period](https://www.hl7.org/fhir/datatypes.html#Period) | The Period the KPI value is measured for |
-| referenceRange | - | Reference Range (example: baseline, maximum, minimum) TODO!
+| referenceRange | - | Reference Range (example: baseline, range, target)
 
