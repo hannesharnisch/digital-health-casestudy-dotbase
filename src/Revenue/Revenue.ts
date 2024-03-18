@@ -1,5 +1,5 @@
 import {readJson} from "../utils";
-import {KPI, KPIPeriod, OrganizationReference} from "../KPI";
+import {KPI, KPIPeriod, KPIOrganizationReference} from "../KPI";
 
 interface PeriodRevenue {
     start: string
@@ -24,7 +24,7 @@ export function demonstrateRevenue(jsonPath: string) {
         })
     })
 
-    const dotbasePerformerOption = { performer: [new OrganizationReference('121', 'Dotbase')] }
+    const dotbasePerformerOption = { performer: [new KPIOrganizationReference('121', 'Dotbase')] }
 
     const totalRevenueKPI = KPI.createKPI(
         {
@@ -35,7 +35,7 @@ export function demonstrateRevenue(jsonPath: string) {
             value: periodRevenues.reduce((acc, elem) => acc + elem.revenue, 0),
             unit: "euros"
         },
-        new OrganizationReference("1", "Example Hospital"),
+        new KPIOrganizationReference("1", "Example Hospital"),
         new KPIPeriod(periodRevenues[0].start, periodRevenues[0].end),
         dotbasePerformerOption
     )
@@ -53,7 +53,7 @@ export function demonstrateRevenue(jsonPath: string) {
                 value: elem.revenue,
                 unit: "euros"
             },
-            new OrganizationReference(elem.departmentId, elem.department),
+            new KPIOrganizationReference(elem.departmentId, elem.department),
             new KPIPeriod(elem.start, elem.end),
             dotbasePerformerOption
         ))
