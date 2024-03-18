@@ -33,12 +33,14 @@ class KPIReferenceRange implements ObservationReferenceRange {
     }
 }
 
-export class OrganizationReference implements Reference {
-    reference: string
+export class KPIOrganizationReference implements Reference {
+    reference: string;
     display: string | undefined;
+    type: string;
     constructor(orgId: string, orgName?: string) {
         this.reference = `Organization/${orgId}`
         this.display = orgName
+        this.type = 'Organization'
     }
 
 }
@@ -50,7 +52,8 @@ export class KPI implements Observation {
     basedOn?: undefined;
     code: CodeableConcept;
     partOf?: undefined;
-    subject: Reference;
+    subject: undefined;
+    focus: KPIOrganizationReference[];
     encounter?: undefined;
     effectivePeriod: KPIPeriod;
     performer?: Reference[] | undefined;
@@ -74,7 +77,7 @@ export class KPI implements Observation {
 
     constructor(inputObject: any) {
         this.code = inputObject.code
-        this.subject = inputObject.subject
+        this.focus = inputObject.focus
         this.effectivePeriod = new KPIPeriod(inputObject.effectivePeriod.start, inputObject.effectivePeriod.end)
 
         for (const key of Object.keys(inputObject)) {
@@ -86,12 +89,12 @@ export class KPI implements Observation {
         }
     }
 
-    static createKPI(kpiIdentifier: KPIIdentifier, value: Quantity, referedOrganization: OrganizationReference, period: KPIPeriod, options?: KPIOptions){
+    static createKPI(kpiIdentifier: KPIIdentifier, value: Quantity, referedOrganization: KPIOrganizationReference, period: KPIPeriod, options?: KPIOptions){
         const kpiCode: CodeableConcept = {coding: [{code: kpiIdentifier.id, display: kpiIdentifier.name}]}
 
         return new KPI({
             code: kpiCode,
-            subject: referedOrganization,
+            focus: referedOrganization,
             effectivePeriod: period,
             valueQuantity: value,
             ...options

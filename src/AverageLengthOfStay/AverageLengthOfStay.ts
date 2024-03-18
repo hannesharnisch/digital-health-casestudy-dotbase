@@ -1,5 +1,5 @@
 import {Encounter} from "fhir/r4";
-import {KPI, KPIPeriod, OrganizationReference} from "../KPI";
+import {KPI, KPIPeriod, KPIOrganizationReference} from "../KPI";
 import {readJson} from "../utils";
 
 
@@ -29,9 +29,9 @@ export function demonstrateAverageLengthOfStayKPI(jsonPath: string) : KPI {
             value: avg,
             unit: "days"
         },
-        new OrganizationReference("1", "Example Hospital"),
+        new KPIOrganizationReference("1", "Example Hospital"),
         new KPIPeriod("2024-03-01"),
-{ performer: [new OrganizationReference('121', 'Dotbase')] }
+{ performer: [new KPIOrganizationReference('121', 'Dotbase')] }
     )
 }
 

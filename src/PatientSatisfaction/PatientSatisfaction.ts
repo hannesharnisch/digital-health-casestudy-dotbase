@@ -1,6 +1,6 @@
 import {jsonToBundle} from "../Bundle";
 import {Bundle, CodeableConcept, Observation, Reference} from "fhir/r4";
-import {KPI, KPIPeriod, OrganizationReference} from "../KPI";
+import {KPI, KPIPeriod, KPIOrganizationReference} from "../KPI";
 
 /**
  * Example Class for Observations of patient satisfaction questionnaires
@@ -56,7 +56,7 @@ export function patientSatisfactionDemonstration(jsonPath: string){
             value: average,
             unit: "Points"
         },
-        new OrganizationReference("1111"),
+        new KPIOrganizationReference("1111"),
         new KPIPeriod("2024-03-17")
     )
 }
