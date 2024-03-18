@@ -94,7 +94,7 @@ export class KPI implements Observation {
 
         return new KPI({
             code: kpiCode,
-            focus: referedOrganization,
+            focus: [referedOrganization],
             effectivePeriod: period,
             valueQuantity: value,
             ...options
