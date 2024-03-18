@@ -1,0 +1,62 @@
+[
+  {
+    "resourceType": "Encounter",
+    "id": "encounter1",
+    "status": "finished",
+    "period": {
+      "start": "2024-03-05T09:00:00Z",
+      "end": "2024-03-05T09:20:00Z"
+    },
+    "length": {
+      "value": 20,
+      "unit": "minutes",
+      "system": "http://unitsofmeasure.org",
+      "code": "min"
+    }
+  },
+  {
+    "resourceType": "Encounter",
+    "id": "encounter2",
+    "status": "finished",
+    "period": {
+      "start": "2024-03-10T10:00:00Z",
+      "end": "2024-03-10T10:35:00Z"
+    },
+    "length": {
+      "value": 35,
+      "unit": "minutes",
+      "system": "http://unitsofmeasure.org",
+      "code": "min"
+    }
+  },
+  {
+    "resourceType": "Encounter",
+    "id": "encounter3",
+    "status": "finished",
+    "period": {
+      "start": "2024-03-15T13:00:00Z",
+      "end": "2024-03-15T13:50:00Z"
+    },
+    "length": {
+      "value": 50,
+      "unit": "minutes",
+      "system": "http://unitsofmeasure.org",
+      "code": "min"
+    }
+  },
+  {
+    "resourceType": "Encounter",
+    "id": "encounter4",
+    "status": "finished",
+    "period": {
+      "start": "2024-03-20T14:00:00Z",
+      "end": "2024-03-20T14:45:00Z"
+    },
+    "length": {
+      "value": 45,
+      "unit": "minutes",
+      "system": "http://unitsofmeasure.org",
+      "code": "min"
+    }
+  }
+]

@@ -1,6 +1,6 @@
 import {Encounter} from "fhir/r4";
 import {KPI, KPIPeriod, KPIOrganizationReference} from "../KPI";
-import {readJson} from "../utils";
+import {calculateAverage, readJson} from "../utils";
 
 
 export function demonstrateAverageLengthOfStayKPI(jsonPath: string) : KPI {
@@ -38,11 +38,6 @@ export function demonstrateAverageLengthOfStayKPI(jsonPath: string) : KPI {
 function getEncounters(jsonPath: string) : Encounter[] {
     const data = readJson(jsonPath)
     return data.map((elem: any) => {return elem as Encounter})
-}
-
-function calculateAverage(arr: number[]){
-    const sum = arr.reduce((acc, elem) => acc + elem, 0)
-    return sum / arr.length
 }
 
 function getDaysDifference(date1: Date, date2: Date) {

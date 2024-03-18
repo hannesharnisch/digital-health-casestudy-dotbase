@@ -8,3 +8,8 @@ export function readJson(jsonPath: string) : any {
 export function showObject(obj: any) {
     return JSON.stringify(obj)
 }
+
+export function calculateAverage(arr: number[]){
+    const sum = arr.reduce((acc, elem) => acc + elem, 0)
+    return sum / arr.length
+}
