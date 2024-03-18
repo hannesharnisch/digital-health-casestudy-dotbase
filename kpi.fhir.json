@@ -1,7 +1,7 @@
 {
     "resourceType": "StructureDefinition",
     "id": "KPI-dotbase",
-    "url": "http://example.com/fhir/StructureDefinition/kpi-dotbase",
+    "url": "https://simplifier.net/kpi-dotbase/KPI",
     "version": "0.0.1",
     "name": "KPI",
     "title": "KPI Definition",
@@ -45,13 +45,23 @@
             {
                 "id": "Observation.subject",
                 "path": "Observation.subject",
+                "max": "0"
+            },
+            {
+                "id": "Observation.focus",
+                "path": "Observation.focus",
+                "type": [
+                    {
+                        "code": "Reference",
+                        "targetProfile": [ "http://hl7.org/fhir/StructureDefinition/Organization" ]
+                    }
+                ],
                 "min": 1,
                 "max": "1"
             },
             {
                 "id": "Observation.encounter",
                 "path": "Observation.encounter",
-                "min": 0,
                 "max": "0"
             },
             {
@@ -131,11 +141,18 @@
                 "comment": "In context of KPIs this property provides information about key values or ranges of the KPI"
             },
             {
-                "id": "Observation.referenceRange.text",
-                "path": "Observation.referenceRange.text",
+                "id": "Observation.referenceRange.type",
+                "path": "Observation.referenceRange.type",
                 "min": 1,
                 "max": "1",
-                "comment": "Description about the referenceRange or single value"
+                "comment": "Type of the referenceRange, e.g. range, baseline, target"
+            },
+            {
+                "id": "Observation.referenceRange.text",
+                "path": "Observation.referenceRange.text",
+                "min": 0,
+                "max": "1",
+                "comment": "Description about the referenceRange"
             },
             {
                 "id": "Observation.component",
