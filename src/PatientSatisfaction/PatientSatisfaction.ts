@@ -1,5 +1,5 @@
 import {jsonToBundle} from "../Bundle";
-import {Bundle, CodeableConcept, FhirResource, Observation, Reference} from "fhir/r4";
+import {Bundle, CodeableConcept, Observation, Reference} from "fhir/r4";
 import {KPI, KPIPeriod, OrganizationReference} from "../KPI";
 
 /**
@@ -33,7 +33,7 @@ function dummyRestFHIRApiCall(jsonPath: string): Bundle | null{
     return jsonToBundle(jsonPath)
 }
 
-function extractQuestionnaireObservations(bundle: Bundle<FhirResource>) {
+function extractQuestionnaireObservations(bundle: Bundle) {
     return bundle.entry?.map((elem) => {
         return elem.resource
     })
@@ -48,7 +48,10 @@ export function patientSatisfactionDemonstration(jsonPath: string){
     const average = calculateAverageSatisfaction(extractedResults)
 
     return KPI.createKPI(
-"Patient satisfaction KPI",
+        {
+            id: "2",
+            name: "Patient satisfaction KPI"
+        },
         {
             value: average,
             unit: "Points"

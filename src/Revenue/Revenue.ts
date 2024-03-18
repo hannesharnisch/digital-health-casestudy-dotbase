@@ -27,7 +27,10 @@ export function demonstrateRevenue(jsonPath: string) {
     const dotbasePerformerOption = { performer: [new OrganizationReference('121', 'Dotbase')] }
 
     const totalRevenueKPI = KPI.createKPI(
-        "Total Revenue",
+        {
+            id: "4",
+            name: "Total Revenue"
+        },
         {
             value: periodRevenues.reduce((acc, elem) => acc + elem.revenue, 0),
             unit: "euros"
@@ -42,7 +45,10 @@ export function demonstrateRevenue(jsonPath: string) {
     const departmentKPIs : KPI[] = []
     periodRevenues.forEach((elem) => {
         departmentKPIs.push(KPI.createKPI(
-            `Department Revenue: ${elem.department}`,
+            {
+                id: "3",
+                name: `Department Revenue: ${elem.department}`
+            },
             {
                 value: elem.revenue,
                 unit: "euros"
