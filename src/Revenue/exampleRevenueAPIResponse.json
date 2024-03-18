@@ -1,0 +1,35 @@
+{
+  "start_date": "2024-01-01",
+  "end_date": "2024-03-31",
+  "sales_data": [
+    {
+      "departmentId": "1111",
+      "department": "Surgery",
+      "sales": 15000.00,
+      "payments": 12000.00,
+      "open_invoices": 3000.00
+    },
+    {
+      "departmentId": "1112",
+      "department": "Internal Medicine",
+      "sales": 20000.00,
+      "payments": 18000.00,
+      "open_invoices": 2000.00
+    },
+    {
+      "departmentId": "1113",
+      "department": "Radiology",
+      "sales": 12000.00,
+      "payments": 10000.00,
+      "open_invoices": 2000.00
+    },
+    {
+      "departmentId": "1114",
+      "department": "Emergency Room",
+      "sales": 18000.00,
+      "payments": 15000.00,
+      "open_invoices": 3000.00
+    }
+  ]
+}
+

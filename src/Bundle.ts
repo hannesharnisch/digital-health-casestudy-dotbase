@@ -1,5 +1,5 @@
 import { Bundle, Identifier, Signature, BundleLink, FhirResource, Element, BundleEntry } from 'fhir/r4';
-import fs from 'fs'
+import {readJson} from "./utils";
 
 // Get dummy
 class BundleImpl implements Bundle {
@@ -41,8 +41,7 @@ class BundleImpl implements Bundle {
 
 export function jsonToBundle(jsonPath: string): Bundle | null {
     try {
-        const jsonData: string = fs.readFileSync(jsonPath, 'utf-8');
-        const parsedData = JSON.parse(jsonData);
+        const parsedData = readJson(jsonPath)
         if (typeof parsedData === 'object' && parsedData !== null) {
 
             const validTypes = [
