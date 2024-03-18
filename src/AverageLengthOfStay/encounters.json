@@ -1,0 +1,102 @@
+[
+  {
+    "resourceType": "Encounter",
+    "id": "encounter1",
+    "status": "finished",
+    "class": {
+      "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+      "code": "IMP",
+      "display": "inpatient encounter"
+    },
+    "subject": {
+      "reference": "Patient/example-patient"
+    },
+    "period": {
+      "start": "2024-03-01T08:00:00Z",
+      "end": "2024-03-03T12:00:00Z"
+    },
+    "hospitalization": {
+      "dischargeDisposition": {
+        "coding": [
+          {
+            "system": "http://terminology.hl7.org/CodeSystem/discharge-disposition",
+            "code": "home",
+            "display": "Home"
+          }
+        ]
+      }
+    },
+    "location": [
+      {
+        "status": "completed",
+        "period": {
+          "start": "2024-03-01T08:00:00Z",
+          "end": "2024-03-01T12:00:00Z"
+        },
+        "location": {
+          "reference": "Location/hospital-ward"
+        }
+      },
+      {
+        "status": "completed",
+        "period": {
+          "start": "2024-03-01T12:00:00Z",
+          "end": "2024-03-03T12:00:00Z"
+        },
+        "location": {
+          "reference": "Location/hospital-room"
+        }
+      }
+    ]
+  },
+  {
+    "resourceType": "Encounter",
+    "id": "encounter2",
+    "status": "finished",
+    "class": {
+      "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+      "code": "IMP",
+      "display": "inpatient encounter"
+    },
+    "subject": {
+      "reference": "Patient/example-patient"
+    },
+    "period": {
+      "start": "2024-03-05T10:00:00Z",
+      "end": "2024-03-07T16:00:00Z"
+    },
+    "hospitalization": {
+      "dischargeDisposition": {
+        "coding": [
+          {
+            "system": "http://terminology.hl7.org/CodeSystem/discharge-disposition",
+            "code": "home",
+            "display": "Home"
+          }
+        ]
+      }
+    },
+    "location": [
+      {
+        "status": "completed",
+        "period": {
+          "start": "2024-03-05T10:00:00Z",
+          "end": "2024-03-06T12:00:00Z"
+        },
+        "location": {
+          "reference": "Location/hospital-ward"
+        }
+      },
+      {
+        "status": "completed",
+        "period": {
+          "start": "2024-03-06T12:00:00Z",
+          "end": "2024-03-14T16:00:00Z"
+        },
+        "location": {
+          "reference": "Location/hospital-room"
+        }
+      }
+    ]
+  }
+]
