@@ -24,12 +24,14 @@ class KPIReferenceRange implements ObservationReferenceRange {
     age?: undefined;
     high?: Quantity | undefined;
     low?: Quantity | undefined;
-    text?: string;
+    text?: string | undefined;
+    type: CodeableConcept;
 
-    constructor(description: string, low: Quantity | undefined, high: Quantity | undefined) {
-        this.text = description
+    constructor(type: CodeableConcept, low: Quantity | undefined, high: Quantity | undefined, description?: string) {
+        this.type = type
         this.low = low
         this.high = high
+        description ? this.text = description : null
     }
 }
 
