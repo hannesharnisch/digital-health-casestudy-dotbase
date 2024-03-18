@@ -18,10 +18,10 @@ export class KPIPeriod implements Period {
 class KPIReferenceRange implements ObservationReferenceRange {
     age?: undefined;
     high?: Quantity | undefined;
-    low: Quantity;
+    low?: Quantity | undefined;
     text?: string;
 
-    constructor(description: string, low: Quantity, high: Quantity | undefined) {
+    constructor(description: string, low: Quantity | undefined, high: Quantity | undefined) {
         this.text = description
         this.low = low
         this.high = high
@@ -88,6 +88,7 @@ export class KPI implements Observation {
             code: kpiCode,
             subject: referedOrganization,
             effectivePeriod: period,
+            valueQuantity: value,
             ...options
         })
     }
