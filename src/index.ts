@@ -1,13 +1,19 @@
-import {patientSatisfactionDemonstration} from "./PatientSatisfaction/PatientSatisfaction";
 import {demonstrateRevenue} from "./Revenue/Revenue";
-import {showObject} from "./utils";
-import {demonstrateAverageLengthOfStayKPI} from "./AverageLengthOfStay/AverageLengthOfStay";
-import {demonstrateEncounterLength} from "./EncounterLength/EncounterLength";
-import {demonstrateElAPSKPI} from "./EncounterLengthAndPatientSatisfaction/EncounterLengthAndPatientSatisfaction";
+import {dummyKPIPeriod, showObject} from "./utils";
+import aggregators from "./aggregators";
+import KPIAggregatorRegistry from "./KPIRegistry";
+import { KPIid } from "./KPIModel/Type";
+
+
+for(const aggregator of aggregators){
+    KPIAggregatorRegistry.register(aggregator);
+}
 
 // Patient satisfaction
 console.log("Patient Satisfaction KPI:")
-console.log(showObject(patientSatisfactionDemonstration('./assets/sample_data/PatientSatisfaction/samplePatientSatisfactionBundle.fhir.json')))
+console.log(showObject(
+    KPIAggregatorRegistry.createInstance(KPIid.PatientSatisfaction)?.calculate(dummyKPIPeriod()))
+)
 
 const revenues = demonstrateRevenue("./assets/sample_data/Revenue/exampleRevenueAPIResponse.json")
 console.log("\n")
@@ -21,12 +27,18 @@ revenues.departments.forEach((elem) => {
 
 console.log("\n")
 console.log("Average Length Of Stay")
-console.log(showObject(demonstrateAverageLengthOfStayKPI("./assets/sample_data/AverageLengthOfStay/encounters.json")))
+console.log(showObject(
+    KPIAggregatorRegistry.createInstance(KPIid.AverageLengthOfStay)?.calculate(dummyKPIPeriod()))
+)
 
 console.log("\n")
 console.log("Average Length Of Encounter")
-console.log(showObject(demonstrateEncounterLength("./assets/sample_data/EncounterLength/encounters.json")))
+console.log(showObject(
+    KPIAggregatorRegistry.createInstance(KPIid.EncounterLength)?.calculate(dummyKPIPeriod()))
+)
 
 console.log("\n")
 console.log("Patient satisfaction and average length of encounter ratio")
-console.log(showObject(demonstrateElAPSKPI("./assets/sample_data/EncounterLength/encounters.json", './assets/sample_data/PatientSatisfaction/samplePatientSatisfactionBundle.fhir.json')))
+console.log(showObject(
+    KPIAggregatorRegistry.createInstance(KPIid.EncounterLengthAndPatientSatisfaction)?.calculate(dummyKPIPeriod()))
+)

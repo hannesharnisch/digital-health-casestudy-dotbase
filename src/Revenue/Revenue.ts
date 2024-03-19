@@ -1,5 +1,8 @@
+import KPI from "../KPIModel/KPI";
+import KPIOrganizationReference from "../KPIModel/OrganizationReference";
+import KPIPeriod from "../KPIModel/Period";
+import { KPIid } from "../KPIModel/Type";
 import {readJson} from "../utils";
-import {KPI, KPIPeriod, KPIOrganizationReference} from "../KPI";
 
 interface PeriodRevenue {
     start: string
@@ -28,7 +31,7 @@ export function demonstrateRevenue(jsonPath: string) {
 
     const totalRevenueKPI = KPI.createKPI(
         {
-            id: "4",
+            id: KPIid.Revenue,
             name: "Total Revenue"
         },
         {
@@ -46,7 +49,7 @@ export function demonstrateRevenue(jsonPath: string) {
     periodRevenues.forEach((elem) => {
         departmentKPIs.push(KPI.createKPI(
             {
-                id: "3",
+                id: KPIid.Revenue,
                 name: `Department Revenue: ${elem.department}`
             },
             {

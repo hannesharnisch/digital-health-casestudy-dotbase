@@ -1,9 +1,9 @@
-import {CodeableConcept, Observation, ObservationReferenceRange, Period, Quantity, Reference} from "fhir/r4";
+import { CodeableConcept, Observation, Quantity, Reference} from "fhir/r4";
+import KPIType from "./Type";
+import KPIOrganizationReference from "./OrganizationReference";
+import KPIPeriod from "./Period";
+import KPIReferenceRange from "./ReferenceRange";
 
-interface KPIIdentifier {
-    id: string,
-    name: string
-}
 
 /**
  * This interface is only necessary for the static createKPI method
@@ -27,44 +27,7 @@ interface KPIOptions {
     valueQuantity?: Quantity | undefined;
 }
 
-export class KPIPeriod implements Period {
-    start: string;
-    end?: string | undefined;
-
-    constructor(start: string, end?: string | undefined) {
-        this.start = start
-        this.end = end
-    }
-}
-
-class KPIReferenceRange implements ObservationReferenceRange {
-    age?: undefined;
-    high?: Quantity | undefined;
-    low?: Quantity | undefined;
-    text?: string | undefined;
-    type: CodeableConcept;
-
-    constructor(type: CodeableConcept, low: Quantity | undefined, high: Quantity | undefined, description?: string) {
-        this.type = type
-        this.low = low
-        this.high = high
-        description ? this.text = description : null
-    }
-}
-
-export class KPIOrganizationReference implements Reference {
-    reference: string;
-    display: string | undefined;
-    type: string;
-    constructor(orgId: string, orgName?: string) {
-        this.reference = `Organization/${orgId}`
-        this.display = orgName
-        this.type = 'Organization'
-    }
-
-}
-
-export class KPI implements Observation {
+class KPI implements Observation {
     readonly resourceType = 'Observation';
     readonly status = 'final';
     readonly category: CodeableConcept[] =  [{"coding": [{"display": "KPI"}]}]
@@ -112,8 +75,8 @@ export class KPI implements Observation {
         }
     }
 
-    static createKPI(kpiIdentifier: KPIIdentifier, value: Quantity, referedOrganization: KPIOrganizationReference, period: KPIPeriod, options?: KPICreatorOptions){
-        const kpiCode: CodeableConcept = {coding: [{code: kpiIdentifier.id, display: kpiIdentifier.name}]}
+    static createKPI(kpiType: KPIType, value: Quantity, referedOrganization: KPIOrganizationReference, period: KPIPeriod, options?: KPICreatorOptions){
+        const kpiCode: CodeableConcept = {coding: [{code: kpiType.id, display: kpiType.name}]}
 
         return new KPI({
             code: kpiCode,
@@ -126,3 +89,5 @@ export class KPI implements Observation {
     }
 
 }
+
+export default KPI;

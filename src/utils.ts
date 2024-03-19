@@ -1,4 +1,6 @@
 import fs from 'fs'
+import KPI from './KPIModel/KPI';
+import KPIPeriod from './KPIModel/Period';
 
 export function readJson(jsonPath: string) : any {
     const jsonData: string = fs.readFileSync(jsonPath, 'utf-8');
@@ -12,4 +14,20 @@ export function showObject(obj: any) {
 export function calculateAverage(arr: number[]){
     const sum = arr.reduce((acc, elem) => acc + elem, 0)
     return sum / arr.length
+}
+
+export function getDaysDifference(date1: Date, date2: Date) {
+    const date1Time = date1.getTime();
+    const date2Time = date2.getTime();
+    const timeDifference = Math.abs(date2Time - date1Time);
+    return  Math.ceil(timeDifference / (1000 * 3600 * 24));
+}
+
+export function readFHIRResourceList<T>(jsonPath: string) : T[] {
+    const data = readJson(jsonPath)
+    return data.map((elem: any) => {return elem as T})
+}
+
+export function dummyKPIPeriod(): KPIPeriod {
+    return new KPIPeriod("2024-03-01")
 }
