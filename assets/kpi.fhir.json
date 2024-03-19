@@ -33,6 +33,7 @@
                 "path": "Observation.category",
                 "min": 1,
                 "max": "*",
+                "comment": "A category for a general KPI should be provided. Additionally more sub-categories of the KPI can be added.",
                 "constraint": [
                     {
                         "key": "Observation-category",
@@ -45,11 +46,13 @@
             {
                 "id": "Observation.subject",
                 "path": "Observation.subject",
-                "max": "0"
+                "max": "0",
+                "comment": "FHIR R4 does not support organization references in \"subject\", this changes with R5."
             },
             {
                 "id": "Observation.focus",
                 "path": "Observation.focus",
+                "comment": "Used to reference the organization in regard to the KPI. FHIR R4 does not support organization references in \"subject\", this changes with R5.",
                 "type": [
                     {
                         "code": "Reference",
@@ -69,6 +72,7 @@
                 "path": "Observation.effective[x]",
                 "min": 1,
                 "max": "1",
+                "comment": "Observation period of the KPI",
                 "type": [
                     {
                         "code": "Period"
@@ -84,6 +88,7 @@
             {
                 "id": "Observation.performer",
                 "path": "Observation.performer",
+                "comment": "If the observing organization of the KPI differs to the one provided in \"focus\", an observing organization can be referenced.",
                 "type": [
                     {
                         "code": "Reference",
@@ -98,6 +103,7 @@
                 "path": "Observation.value[x]",
                 "min": 0,
                 "max": "1",
+                "comment": "Value of type valueQuantity of the KPI",
                 "type": [
                     {
                         "code": "Quantity"
@@ -116,7 +122,8 @@
                 "id": "Observation.dataAbsentReason",
                 "path": "Observation.dataAbsentReason",
                 "min": 0,
-                "max": "1"
+                "max": "1",
+                "comment": "If value creation failed, a reason for the absent must be provided"
             },
             {
                 "id": "Observation.bodySite",
