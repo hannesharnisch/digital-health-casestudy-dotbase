@@ -7,7 +7,7 @@ For Profiling FHIR Ressouces it is best to use the [Kodijin FHIR Profiler](https
 
 There you can see the created ressource in a Split pane.
 
-![KPI Image](./KPI_structure.png)
+![KPI Image](./assets/KPI_structure.png)
 
 The following is a list of fields that are used for representing a KPI.
 
