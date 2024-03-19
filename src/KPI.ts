@@ -5,11 +5,28 @@ interface KPIIdentifier {
     name: string
 }
 
-interface KPIOptions {
+/**
+ * This interface is only necessary for the static createKPI method
+ */
+interface KPICreatorOptions {
     performer?: Reference[] | undefined;
     dataAbsentReason?: CodeableConcept | undefined;
     referenceRange?: KPIReferenceRange[] | undefined;
 }
+
+interface KPIProperties {
+    code: CodeableConcept;
+    focus: KPIOrganizationReference[];
+    effectivePeriod: KPIPeriod;
+}
+
+interface KPIOptions {
+    performer?: Reference[] | undefined;
+    dataAbsentReason?: CodeableConcept | undefined;
+    referenceRange?: KPIReferenceRange[] | undefined;
+    valueQuantity?: Quantity | undefined;
+}
+
 export class KPIPeriod implements Period {
     start: string;
     end?: string | undefined;
@@ -77,27 +94,32 @@ export class KPI implements Observation {
     referenceRange?: KPIReferenceRange[] | undefined;
     component?: undefined; // property should not be set
 
-    constructor(inputObject: any) {
-        this.code = inputObject.code
-        this.focus = inputObject.focus
-        this.effectivePeriod = new KPIPeriod(inputObject.effectivePeriod.start, inputObject.effectivePeriod.end)
+    constructor(props: KPIProperties, options: KPIOptions) {
+        // Validation: dataAbsentReason Rule
+        if (options.valueQuantity === undefined && options.dataAbsentReason === undefined) {
+            throw Error('To create a KPI Object, either a valueQuantity or a dataAbsentReason must be provided in "options" argument of the constructor')
+        }
 
-        for (const key of Object.keys(inputObject)) {
-            if (['code', 'subject', 'category', 'effectivePeriod'].includes(key)){
-                continue
-            }
+        // mandatory values
+        this.code = props.code
+        this.focus = props.focus
+        this.effectivePeriod = props.effectivePeriod
+
+        // optional values
+        for (const key of Object.keys(options)) {
             // @ts-ignore
-            this[key] = inputObject[key]
+            this[key] = options[key]
         }
     }
 
-    static createKPI(kpiIdentifier: KPIIdentifier, value: Quantity, referedOrganization: KPIOrganizationReference, period: KPIPeriod, options?: KPIOptions){
+    static createKPI(kpiIdentifier: KPIIdentifier, value: Quantity, referedOrganization: KPIOrganizationReference, period: KPIPeriod, options?: KPICreatorOptions){
         const kpiCode: CodeableConcept = {coding: [{code: kpiIdentifier.id, display: kpiIdentifier.name}]}
 
         return new KPI({
             code: kpiCode,
             focus: [referedOrganization],
             effectivePeriod: period,
+            }, {
             valueQuantity: value,
             ...options
         })
