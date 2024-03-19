@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/hannesharnisch/digital-health-casestudy-dotbase#readme",
   "devDependencies": {
+    "@types/node": "^20.11.30",
     "typescript": "^5.4.2"
   },
   "dependencies": {
