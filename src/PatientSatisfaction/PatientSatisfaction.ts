@@ -25,7 +25,7 @@ function calculateAverageSatisfaction(observations: SatisfactionObservation[]) {
 }
 
 /**
- * This funciton simulates a FHIR Rest-Api call and return a bundle
+ * This function simulates a FHIR Rest-Api call and return a bundle
  * of observations which have a specific code and are in a specific period
  * The REST call for such a result would be: http://hapi.fhir.org/baseR4/Observation?date=ge<start-date>&date=le<end-date>&code=<code-of-questionnaire-response>
  */

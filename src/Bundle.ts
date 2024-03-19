@@ -1,10 +1,10 @@
-import { Bundle, Identifier, Signature, BundleLink, FhirResource, Element, BundleEntry } from 'fhir/r4';
+import { Bundle, Identifier, Signature, BundleLink, Element, BundleEntry } from 'fhir/r4';
 import {readJson} from "./utils";
 
 // Get dummy
 class BundleImpl implements Bundle {
     readonly resourceType = 'Bundle';
-    entry?: Array<BundleEntry<FhirResource>> | undefined;
+    entry?: Array<BundleEntry> | undefined;
     identifier?: Identifier | undefined;
     link?: BundleLink[] | undefined;
     signature?: Signature | undefined;

@@ -51,31 +51,31 @@ export class KPI implements Observation {
     readonly resourceType = 'Observation';
     readonly status = 'final';
     readonly category: CodeableConcept[] =  [{"coding": [{"display": "KPI"}]}]
-    basedOn?: undefined;
+    basedOn?: undefined; // property should not be set
     code: CodeableConcept;
-    partOf?: undefined;
-    subject: undefined;
+    partOf?: undefined; // property should not be set
+    subject: undefined; // property should not be set
     focus: KPIOrganizationReference[];
-    encounter?: undefined;
+    encounter?: undefined; // property should not be set
     effectivePeriod: KPIPeriod;
     performer?: Reference[] | undefined;
     valueQuantity?: Quantity | undefined;
-    valueCodeableConcept?: undefined; // .value must be quantity
-    valueString?: undefined; // .value must be quantity
-    valueBoolean?: undefined; // .value must be quantity
-    valuePeriod?: undefined; // .value must be quantity
-    valueDateTime?: undefined; // .value must be quantity
-    valueInteger?: undefined; // .value must be quantity
-    valueRange?: undefined; // .value must be quantity
-    valueRatio?: undefined; // .value must be quantity
-    valueTime?: undefined; // .value must be quantity
-    valueSampledData?: undefined; // .value must be quantity
+    valueCodeableConcept?: undefined; // .value[x] of Observation must be valueQuantity
+    valueString?: undefined; // .value[x] of Observation must be valueQuantity
+    valueBoolean?: undefined; // .value[x] of Observation must be valueQuantity
+    valuePeriod?: undefined; // .value[x] of Observation must be valueQuantity
+    valueDateTime?: undefined; // .value[x] of Observation must be valueQuantity
+    valueInteger?: undefined; // .value[x] of Observation must be valueQuantity
+    valueRange?: undefined; // .value[x] of Observation must be valueQuantity
+    valueRatio?: undefined; // .value[x] of Observation must be valueQuantity
+    valueTime?: undefined; // .value[x] of Observation must be valueQuantity
+    valueSampledData?: undefined; // .value[x] of Observation must be valueQuantity
     dataAbsentReason?: CodeableConcept | undefined;
-    bodySite?: undefined;
-    specimen?: undefined;
-    device?: undefined;
+    bodySite?: undefined; // property should not be set
+    specimen?: undefined; // property should not be set
+    device?: undefined; // property should not be set
     referenceRange?: KPIReferenceRange[] | undefined;
-    component?: undefined;
+    component?: undefined; // property should not be set
 
     constructor(inputObject: any) {
         this.code = inputObject.code

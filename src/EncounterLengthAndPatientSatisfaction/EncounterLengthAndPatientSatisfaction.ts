@@ -2,8 +2,8 @@ import {patientSatisfactionDemonstration} from "../PatientSatisfaction/PatientSa
 import {demonstrateEncounterLength} from "../EncounterLength/EncounterLength";
 import {KPI, KPIOrganizationReference, KPIPeriod} from "../KPI";
 
-export function demonstrateElAPSKPI(encountersJsonPath: string, psJsonPaht: string) {
-    const psKPI = patientSatisfactionDemonstration(psJsonPaht)
+export function demonstrateElAPSKPI(encountersJsonPath: string, psJsonPath: string) {
+    const psKPI = patientSatisfactionDemonstration(psJsonPath)
     const encounterLengthKPI = demonstrateEncounterLength(encountersJsonPath)
 
     if (psKPI.valueQuantity?.value === undefined || encounterLengthKPI.valueQuantity?.value === undefined) {
