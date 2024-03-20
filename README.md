@@ -7,7 +7,7 @@ For Profiling FHIR Ressouces it is best to use the [Kodijin FHIR Profiler](https
 
 There you can see the created ressource in a Split pane.
 
-![KPI Image](./assets/KPI_structure.png)
+![KPI Image](./src/assets/KPI_structure.png)
 
 The following is a list of fields that are used for representing a KPI.
 
@@ -21,3 +21,22 @@ The following is a list of fields that are used for representing a KPI.
 | effectivePeriod | [Period](https://www.hl7.org/fhir/datatypes.html#Period) | The Period the KPI value is measured for |
 | referenceRange | - | Reference Range (example: baseline, range, target)
 
+
+## Installation
+
+```bash
+$ npm install
+```
+
+## Running the app
+
+```bash
+# development
+$ npm run start
+
+# watch mode
+$ npm run start:dev
+
+# production mode
+$ npm run start:prod
+```

@@ -1,16 +1,14 @@
-
-
 export enum KPIid {
-    AverageLengthOfStay = "AverageLengthOfStay",  
-    EncounterLength = "EncounterLength",
-    PatientSatisfaction = "PatientSatisfaction",
-    EncounterLengthAndPatientSatisfaction = "EncounterLengthAndPatientSatisfaction",
-    Revenue = "Revenue",
+  AverageLengthOfStay = 'AverageLengthOfStay',
+  EncounterLength = 'EncounterLength',
+  PatientSatisfaction = 'PatientSatisfaction',
+  EncounterLengthAndPatientSatisfaction = 'EncounterLengthAndPatientSatisfaction',
+  Revenue = 'Revenue',
 }
 
 interface KPIType {
-    id: KPIid,
-    name: string
+  id: KPIid;
+  name: string;
 }
 
 export default KPIType;
