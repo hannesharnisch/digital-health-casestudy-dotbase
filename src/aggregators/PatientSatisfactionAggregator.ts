@@ -6,6 +6,7 @@ import KPIAggregator from './KPIAggregator';
 import { dataToBundle } from '../Bundle';
 import KPIOrganizationReference from '../KPIModel/OrganizationReference';
 import data from '../assets/sample_data/PatientSatisfaction/samplePatientSatisfactionBundle.fhir.json';
+import KPIReferenceRange, { RangeCodings } from 'src/KPIModel/ReferenceRange';
 class PatientSatisfactionAggregator implements KPIAggregator {
   getType(): KPIType {
     return {
@@ -22,16 +23,48 @@ class PatientSatisfactionAggregator implements KPIAggregator {
     const extractedResults = extractQuestionnaireObservations(
       searchBundle,
     ) as SatisfactionObservation[];
-    const average = calculateAverageSatisfaction(extractedResults);
+    const average =
+      (calculateAverageSatisfaction(extractedResults) /
+        extractQuestionnaireMaxScore(extractedResults)) *
+      100;
 
     return KPI.createKPI(
       this.getType(),
       {
         value: average,
-        unit: 'Points',
+        unit: 'percent',
       },
       new KPIOrganizationReference('1111'),
       period,
+      {
+        performer: [new KPIOrganizationReference('121', 'Dotbase')],
+        referenceRange: [
+          new KPIReferenceRange(
+            RangeCodings.range,
+            {
+              value: 0,
+            },
+            {
+              value: 100,
+            },
+          ),
+          new KPIReferenceRange(
+            RangeCodings.target,
+            {
+              value: 100,
+            },
+            undefined,
+          ),
+          new KPIReferenceRange(
+            RangeCodings.baseline,
+            {
+              value: 76,
+            },
+            undefined,
+            'Baseline calculated by causal impact analysis',
+          ),
+        ],
+      },
     );
   }
 }
@@ -74,4 +107,11 @@ function extractQuestionnaireObservations(bundle: Bundle) {
   return bundle.entry?.map((elem) => {
     return elem.resource;
   });
+}
+
+function extractQuestionnaireMaxScore(
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  observations: SatisfactionObservation[],
+): number {
+  return 5;
 }

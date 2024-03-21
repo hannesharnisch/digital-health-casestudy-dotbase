@@ -6,6 +6,7 @@ import KPIAggregator from './KPIAggregator';
 import { calculateAverage } from '../utils';
 import KPIOrganizationReference from '../KPIModel/OrganizationReference';
 import data from '../assets/sample_data/EncounterLength/encounters.json';
+import KPIReferenceRange, { RangeCodings } from 'src/KPIModel/ReferenceRange';
 
 class EncounterLengthAggregator implements KPIAggregator {
   public getType(): KPIType {
@@ -34,7 +35,16 @@ class EncounterLengthAggregator implements KPIAggregator {
       },
       new KPIOrganizationReference('1', 'Example Hospital'),
       period,
-      { performer: [new KPIOrganizationReference('121', 'Dotbase')] },
+      {
+        performer: [new KPIOrganizationReference('121', 'Dotbase')],
+        referenceRange: [
+          new KPIReferenceRange(
+            RangeCodings.range,
+            { value: 0, unit: 'minutes' },
+            undefined,
+          ),
+        ],
+      },
     );
   }
 }

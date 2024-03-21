@@ -6,6 +6,7 @@ import KPIOrganizationReference from '../KPIModel/OrganizationReference';
 import KPIAggregator from './KPIAggregator';
 import KPIType, { KPIid } from '../KPIModel/Type';
 import data from '../assets/sample_data/AverageLengthOfStay/encounters.json';
+import KPIReferenceRange, { RangeCodings } from 'src/KPIModel/ReferenceRange';
 class AverageLengthOfStayAggregator implements KPIAggregator {
   public getType(): KPIType {
     return {
@@ -41,7 +42,23 @@ class AverageLengthOfStayAggregator implements KPIAggregator {
       },
       new KPIOrganizationReference('1', 'Example Hospital'),
       period,
-      { performer: [new KPIOrganizationReference('121', 'Dotbase')] },
+      {
+        performer: [new KPIOrganizationReference('121', 'Dotbase')],
+        referenceRange: [
+          new KPIReferenceRange(
+            RangeCodings.baseline,
+            { value: 3.4, unit: 'days' },
+            undefined,
+            'Average length of stay in comparable hospitals',
+          ),
+          new KPIReferenceRange(
+            RangeCodings.baseline,
+            { value: 4, unit: 'days' },
+            undefined,
+            'Previous average length of stay',
+          ),
+        ],
+      },
     );
   }
 }

@@ -74,7 +74,6 @@ class KPI implements Observation {
 
     // optional values
     for (const key of Object.keys(options)) {
-      // @ts-ignore
       this[key] = options[key];
     }
   }

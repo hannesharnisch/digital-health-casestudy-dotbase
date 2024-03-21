@@ -4,6 +4,7 @@ import data from '../assets/sample_data/Revenue/exampleRevenueAPIResponse.json';
 import KPIOrganizationReference from '../KPIModel/OrganizationReference';
 import KPI from '../KPIModel/KPI';
 import KPIPeriod from '../KPIModel/Period';
+import KPIReferenceRange, { RangeCodings } from 'src/KPIModel/ReferenceRange';
 
 class RevenueAggregator implements KPIAggregator {
   public getType(): KPIType {
@@ -36,7 +37,22 @@ class RevenueAggregator implements KPIAggregator {
       },
       new KPIOrganizationReference('1', 'Example Hospital'),
       period,
-      { performer: [new KPIOrganizationReference('121', 'Dotbase')] },
+      {
+        performer: [new KPIOrganizationReference('121', 'Dotbase')],
+        referenceRange: [
+          new KPIReferenceRange(
+            RangeCodings.range,
+            { value: 0, unit: 'euros' },
+            undefined,
+          ),
+          new KPIReferenceRange(
+            RangeCodings.baseline,
+            { value: 73000, unit: 'euros' },
+            undefined,
+            'Revenue baseline from causal impact model',
+          ),
+        ],
+      },
     );
   }
 }
