@@ -3,7 +3,7 @@ import EncounterLength from './EncounterLengthAggregator';
 import EncounterLengthAndPatientSatisfaction from './EncounterLengthAndPatientSatisfactionAggregator';
 import KPIAggregator from './KPIAggregator';
 import PatientSatisfaction from './PatientSatisfactionAggregator';
-import RevenueAggregator from "./RevenueAggregator";
+import RevenueAggregator from './RevenueAggregator';
 
 export default [
   AverageLengthOfStay,
